@@ -1,0 +1,10 @@
+# API Ignore
+/api/.bundle
+/api/db/*.sqlite3
+/api/log/*.log
+/api/tmp
+/api/public/assets
+/api/.idea
+/api/.idea *
+/api/public/system/*
+/api/.rvmrc
