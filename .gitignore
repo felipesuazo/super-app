@@ -8,3 +8,5 @@
 /api/.idea *
 /api/public/system/*
 /api/.rvmrc
+/api/.rspec
+/api/spec/tmp
