@@ -1,18 +1,15 @@
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="0" [nzBreakpoint]="'lg'">
     <div class="logo">
+      <img src="https://www.rankmi.com/hubfs/rankmi%20blanco.png?t=1534563144063" width="70%">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
       <li nz-menu-item><span><i class="anticon anticon-user"></i><span class="nav-text">User List</span></span></li>
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header style="background: #fff; padding:0;">
-    </nz-header>
     <nz-content style="margin:24px 16px 0;">
-      <div style="padding:24px; background: #fff; min-height: 360px;">
-        Content
-      </div>
+      <router-outlet></router-outlet>
     </nz-content>
     <nz-footer style="text-align: center;">Rankmi Interview 2018 - Felipe Suazo</nz-footer>
   </nz-layout>
