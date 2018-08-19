@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../reducers';
+import {Component, OnInit} from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import * as fromRoot from '../../reducers';
+import {hasFailed, isLoading, selectUsers} from '../../reducers';
 import {FetchUsers} from '../../actions/user.action';
+import {Observable} from 'rxjs';
+import {UserModel} from '../../models/user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -9,11 +12,23 @@ import {FetchUsers} from '../../actions/user.action';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+  users: Observable<UserModel[]>;
+  loading: Observable<boolean>;
+  failed: Observable<boolean>;
 
-  constructor(private store: Store<AppState>) { }
+  mouseOver = false;
+
+  constructor(private store: Store<fromRoot.AppState>) { }
 
   ngOnInit() {
-    this.store.dispatch(new FetchUsers());
+    this.users = this.store.pipe(select(selectUsers));
+    this.loading = this.store.pipe(select(isLoading));
+    this.failed = this.store.pipe(select(hasFailed));
+
+    this.loadUsers();
   }
 
+  loadUsers() {
+    this.store.dispatch(new FetchUsers());
+  }
 }

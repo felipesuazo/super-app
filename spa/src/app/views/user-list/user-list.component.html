@@ -1,3 +1,22 @@
 <div style="padding:24px; background: #fff; min-height: 360px;">
-  Content
+  <nz-table #dataTable [nzShowPagination]="false" [nzData]="users | async">
+    <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th nzShowSort nzSortKey="name">Name</th>
+      <th nzShowSort nzSortKey="familyGoal">Family Goal</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of dataTable.data">
+      <td>{{data.name}}</td>
+      <td>{{data.family_goal.family | titlecase }}</td>
+      <td><a>View details</a></td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<div class="floating-button" [class.active]="mouseOver" (mouseover)="mouseOver = true" (mouseout)="mouseOver = false">
+  <button nz-button nzType="primary"  nzSize="large"><i class="anticon anticon-plus"></i> {{ mouseOver ? 'Add User' : '' }}</button>
 </div>
