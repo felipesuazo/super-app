@@ -4,7 +4,7 @@
       <img src="https://www.rankmi.com/hubfs/rankmi%20blanco.png?t=1534563144063" width="70%">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
-      <li nz-menu-item><span><i class="anticon anticon-user"></i><span class="nav-text">User List</span></span></li>
+      <li nz-menu-item [nzSelected]="routeIsActive('/list')" [routerLink]="['/list']"><span><i class="anticon anticon-user"></i><span class="nav-text">User List</span></span></li>
     </ul>
   </nz-sider>
   <nz-layout>
