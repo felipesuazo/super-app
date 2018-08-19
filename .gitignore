@@ -10,3 +10,42 @@
 /api/.rvmrc
 /api/.rspec
 /api/spec/tmp
+
+
+# compiled output
+/spa/dist
+/spa/tmp
+/spa/out-tsc
+
+# dependencies
+/spa/node_modules
+
+# IDEs and editors
+/spa/.idea
+/spa.project
+/spa.classpath
+/spa.c9/
+/spa*.launch
+/spa.settings/
+/spa*.sublime-workspace
+
+# IDE - VSCode
+/spa.vscode/*
+/spa!.vscode/settings.json
+/spa!.vscode/tasks.json
+/spa!.vscode/launch.json
+/spa!.vscode/extensions.json
+
+# misc
+/spa/.sass-cache
+/spa/connect.lock
+/spa/coverage
+/spa/libpeerconnection.log
+/spanpm-debug.log
+/spayarn-error.log
+/spatestem.log
+/spa/typings
+
+# System Files
+/spa.DS_Store
+/spaThumbs.db
