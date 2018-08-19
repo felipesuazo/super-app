@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import {ApiService} from '../services/api.service';
 import {Observable} from 'rxjs';
-import {FETCH_USERS, FETCH_USERS_SUCCESS, FetchUsers} from '../actions/user.action';
+import {FETCH_USERS, FETCH_USERS_SUCCESS } from '../actions/user.action';
 import {map, mergeMap} from 'rxjs/operators';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import * as fromRoot from '../../reducers';
-import {hasFailed, isLoading, selectUsers} from '../../reducers';
+import {hasFailed, isLoading, selectUsers} from '../../selectors/user.selector';
 import {FetchUsers} from '../../actions/user.action';
 import {Observable} from 'rxjs';
 import {UserModel} from '../../models/user.model';
