@@ -7,6 +7,10 @@ class User < ApplicationRecord
     self.family_goal = FamilyGoal.where(position: position.downcase, area: area.downcase, world: world.downcase).first
   end
 
+  def family
+    self.family_goal.family
+  end
+
   # validations
   validates_presence_of :name, :position, :area, :world, :family_goal
 end
