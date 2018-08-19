@@ -17,6 +17,7 @@ export class UserListComponent implements OnInit {
   failed: Observable<boolean>;
 
   mouseOver = false;
+  formVisible = false;
 
   constructor(private store: Store<fromRoot.AppState>) { }
 
@@ -30,5 +31,13 @@ export class UserListComponent implements OnInit {
 
   loadUsers() {
     this.store.dispatch(new FetchUsers());
+  }
+
+  openForm() {
+    this.formVisible = true;
+  }
+
+  closeForm() {
+    this.formVisible = false;
   }
 }

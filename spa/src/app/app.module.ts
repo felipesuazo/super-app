@@ -14,13 +14,15 @@ import { UserListComponent } from './views/user-list/user-list.component';
 import {reducers} from './reducers';
 import {UserEffect} from './reducers/user.effect';
 import {AppRouting} from './app.routing';
+import { CreateUserFormComponent } from './component/create-user-form/create-user-form.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent
+    UserListComponent,
+    CreateUserFormComponent
   ],
   imports: [
     StoreModule.forRoot(reducers),
