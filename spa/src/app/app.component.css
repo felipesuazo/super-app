@@ -1,3 +1,8 @@
 .ant-layout {
   height: 100vh;
 }
+
+.logo {
+  text-align: center;
+  padding: 10px;
+}
