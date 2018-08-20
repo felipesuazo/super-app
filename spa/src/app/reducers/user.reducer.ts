@@ -39,9 +39,10 @@ export function reducer(state = initialState, action: UserAction): UserState {
     }
 
     case SAVE_USER_SUCCESS: {
-      state.users.push(action.payload);
-      console.log(state);
-      return state;
+      return {
+        ...state,
+        users: [...state.users, action.payload]
+      };
     }
 
     case VIEW_USER_DETAIL: {
