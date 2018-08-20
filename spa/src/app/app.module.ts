@@ -16,6 +16,7 @@ import {UserEffect} from './reducers/user.effect';
 import {AppRouting} from './app.routing';
 import { CreateUserFormComponent } from './component/create-user-form/create-user-form.component';
 import {AttributeEffect} from './reducers/attribute.effect';
+import { UserDetailComponent } from './views/user-detail/user-detail.component';
 
 registerLocaleData(en);
 
@@ -23,7 +24,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     UserListComponent,
-    CreateUserFormComponent
+    CreateUserFormComponent,
+    UserDetailComponent
   ],
   imports: [
     StoreModule.forRoot(reducers),

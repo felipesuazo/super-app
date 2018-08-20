@@ -1,0 +1,14 @@
+<div style="padding:24px; background: #fff;">
+  <h1>User Detail</h1>
+
+  <nz-card style="width:300px;">
+    <div><h2><i class="anticon anticon-user"></i> {{ (user | async)?.name }}</h2></div>
+    <p><b>Position</b><br>{{ (user | async)?.position | uppercase }}</p>
+    <p><b>Area</b><br>{{ (user | async)?.area | uppercase }}</p>
+    <p><b>World</b><br>{{ (user | async)?.world | uppercase }}</p>
+    <hr class="separator">
+    <p><b>Family</b><br>{{ (user | async)?.family | uppercase }}</p>
+  </nz-card>
+  <br>
+  <a routerLink="/list"><i class="anticon anticon-arrow-left"></i> Back to User list</a>
+</div>

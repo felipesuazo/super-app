@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {filteredUsers, hasFailed, isLoading} from '../../selectors/user.selector';
-import {FetchUsers, FilterByName, SortBy} from '../../actions/user.action';
+import {filter, filteredUsers, hasFailed, isLoading} from '../../selectors/user.selector';
+import {FetchUsers, FilterByName, SortBy, ViewUserDetail} from '../../actions/user.action';
 import {Observable} from 'rxjs';
 import {UserModel} from '../../models/user.model';
 import {UserState} from '../../reducers/user.reducer';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -15,16 +16,19 @@ export class UserListComponent implements OnInit {
   users: Observable<UserModel[]>;
   loading: Observable<boolean>;
   failed: Observable<boolean>;
+  filter: Observable<string>;
 
   mouseOver = false;
   formVisible = false;
 
-  constructor(private store: Store<UserState>) { }
+  constructor(private store: Store<UserState>,
+              private router: Router) { }
 
   ngOnInit() {
     this.users = this.store.pipe(select(filteredUsers));
     this.loading = this.store.pipe(select(isLoading));
     this.failed = this.store.pipe(select(hasFailed));
+    this.filter = this.store.pipe(select(filter));
 
     this.loadUsers();
   }
@@ -62,6 +66,7 @@ export class UserListComponent implements OnInit {
   }
 
   viewDetails(user: UserModel) {
-    console.log(user);
+    this.store.dispatch(new ViewUserDetail(user));
+    this.router.navigate(['/view']);
   }
 }
