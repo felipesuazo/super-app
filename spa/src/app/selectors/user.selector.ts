@@ -17,8 +17,18 @@ export const filteredUsers = createSelector(
   (users, sort, name) => {
     const returnUsers = users.filter(it => it.name.toLowerCase().indexOf(name.toLowerCase()) > -1);
 
-    let sortFields = [];
-    let sortValues = [];
+    const sortFields = [];
+    const sortValues = [];
+
+    if (sort.name) {
+      sortFields.push('name');
+      sortValues.push(sort.name);
+    }
+
+    if (sort.family) {
+      sortFields.push('family');
+      sortValues.push(sort.family);
+    }
 
     return _.orderBy(returnUsers, sortFields, sortValues);
   }

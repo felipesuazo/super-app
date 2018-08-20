@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {filteredUsers, hasFailed, isLoading} from '../../selectors/user.selector';
-import {FetchUsers, FilterByName} from '../../actions/user.action';
+import {FetchUsers, FilterByName, SortBy} from '../../actions/user.action';
 import {Observable} from 'rxjs';
 import {UserModel} from '../../models/user.model';
 import {UserState} from '../../reducers/user.reducer';
@@ -50,7 +50,15 @@ export class UserListComponent implements OnInit {
   }
 
   sort(event) {
-    console.log(event);
+    let order = null;
+
+    if (event.value === 'descend') {
+      order = 'desc';
+    } else if (event.value === 'ascend') {
+      order = 'asc';
+    }
+
+    this.store.dispatch(new SortBy({ name: event.key, direction: order }));
   }
 
   viewDetails(user: UserModel) {

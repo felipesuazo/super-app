@@ -3,7 +3,7 @@ import {
   FETCH_USERS,
   FETCH_USERS_FAILED,
   FETCH_USERS_SUCCESS, FILTER_BY_NAME,
-  SAVE_USER_SUCCESS,
+  SAVE_USER_SUCCESS, SORT_BY,
   UserAction,
   VIEW_USER_DETAIL
 } from '../actions/user.action';
@@ -59,6 +59,16 @@ export function reducer(state = initialState, action: UserAction): UserState {
 
     case FILTER_BY_NAME: {
       return { ...state, filter: action.payload };
+    }
+
+    case SORT_BY: {
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          [action.payload.name]: action.payload.direction
+        }
+      };
     }
 
     default: {

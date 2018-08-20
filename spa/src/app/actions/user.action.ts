@@ -9,6 +9,7 @@ export const SAVE_USER_SUCCESS = '[User] Save User Success';
 export const SAVE_USER_FAILED = '[User] Save User Failed';
 export const VIEW_USER_DETAIL = '[User] View User Detail';
 export const FILTER_BY_NAME = '[User] Filter By Name';
+export const SORT_BY = '[User] Sort by';
 
 export class FetchUsers implements Action {
   readonly type = FETCH_USERS;
@@ -45,4 +46,9 @@ export class FilterByName implements Action {
   constructor(public payload: string) {}
 }
 
-export type UserAction = FetchUsers | FetchUsersSuccess | FetchUsersFailed | SaveUser | SaveUserSuccess | ViewUserDetail | FilterByName;
+export class SortBy implements Action {
+  readonly type = SORT_BY;
+  constructor(public payload: { name: string, direction: string }) {}
+}
+
+export type UserAction = FetchUsers | FetchUsersSuccess | FetchUsersFailed | SaveUser | SaveUserSuccess | ViewUserDetail | FilterByName | SortBy;
