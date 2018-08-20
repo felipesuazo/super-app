@@ -5,6 +5,7 @@ import {hasFailed, isLoading, selectUsers} from '../../selectors/user.selector';
 import {FetchUsers} from '../../actions/user.action';
 import {Observable} from 'rxjs';
 import {UserModel} from '../../models/user.model';
+import {UserState} from '../../reducers/user.reducer';
 
 @Component({
   selector: 'app-user-list',
@@ -19,7 +20,7 @@ export class UserListComponent implements OnInit {
   mouseOver = false;
   formVisible = false;
 
-  constructor(private store: Store<fromRoot.AppState>) { }
+  constructor(private store: Store<UserState>) { }
 
   ngOnInit() {
     this.users = this.store.pipe(select(selectUsers));
@@ -39,5 +40,9 @@ export class UserListComponent implements OnInit {
 
   closeForm() {
     this.formVisible = false;
+  }
+
+  get drawerWidth() {
+    return window.innerWidth * 0.6;
   }
 }

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
@@ -15,6 +15,7 @@ import {reducers} from './reducers';
 import {UserEffect} from './reducers/user.effect';
 import {AppRouting} from './app.routing';
 import { CreateUserFormComponent } from './component/create-user-form/create-user-form.component';
+import {AttributeEffect} from './reducers/attribute.effect';
 
 registerLocaleData(en);
 
@@ -26,8 +27,9 @@ registerLocaleData(en);
   ],
   imports: [
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([UserEffect]),
+    EffectsModule.forRoot([UserEffect, AttributeEffect]),
     AppRouting,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
