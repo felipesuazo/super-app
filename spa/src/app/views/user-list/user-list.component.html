@@ -1,4 +1,4 @@
-<div style="padding:24px; background: #fff;">
+<div style="padding:24px; background: #fff; position: relative">
   <h1>User List</h1>
   Filter user by name:
   <div nz-row>
@@ -21,10 +21,10 @@
     </tr>
     </tbody>
   </nz-table>
-</div>
 
-<div class="floating-button" [class.active]="mouseOver" (mouseover)="mouseOver = true" (mouseout)="mouseOver = false">
-  <button nz-button nzType="primary"  nzSize="large" (click)="openForm()"><i class="anticon anticon-plus"></i> {{ mouseOver ? 'Add User' : '' }}</button>
+  <div class="floating-button" [class.active]="mouseOver" (mouseover)="mouseOver = true" (mouseout)="mouseOver = false">
+    <button nz-button nzType="primary"  nzSize="large" (click)="openForm()"><i class="anticon anticon-plus"></i> {{ mouseOver ? 'Add User' : '' }}</button>
+  </div>
 </div>
 
 <nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom':'53px' }" [nzWidth]="720 < drawerWidth ? 720 : drawerWidth" [nzMaskClosable]="false" [nzVisible]="formVisible" nzTitle="Add User" (nzOnClose)="closeForm()">
