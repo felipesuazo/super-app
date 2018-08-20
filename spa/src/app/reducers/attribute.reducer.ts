@@ -21,6 +21,10 @@ export function reducer(state = initalState, action: AttributeAction): Attribute
         [action.payload.name]: action.payload.attributes
       };
     }
+
+    default: {
+      return state;
+    }
   }
 }
 

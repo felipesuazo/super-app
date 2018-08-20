@@ -2,7 +2,7 @@
   Filter user by name:
   <div nz-row>
     <div nz-col nzXs="12" nzSm="10">
-      <input nz-input placeholder="Filter user by name" nzSize="large">
+      <input nz-input placeholder="Filter user by name" nzSize="large" (input)="filterByName($event.target.value)">
     </div>
   </div>
   <br>
@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of dataTable.data">
+    <tr *ngFor="let data of (users | async)">
       <td>{{data.name}}</td>
       <td>{{data.family | titlecase }}</td>
       <td><a>View details</a></td>

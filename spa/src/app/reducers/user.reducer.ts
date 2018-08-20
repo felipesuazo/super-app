@@ -1,18 +1,27 @@
 import {UserModel} from '../models/user.model';
-import {FETCH_USERS, FETCH_USERS_FAILED, FETCH_USERS_SUCCESS, UserAction, VIEW_USER_DETAIL} from '../actions/user.action';
+import {
+  FETCH_USERS,
+  FETCH_USERS_FAILED,
+  FETCH_USERS_SUCCESS, FILTER_BY_NAME,
+  SAVE_USER_SUCCESS,
+  UserAction,
+  VIEW_USER_DETAIL
+} from '../actions/user.action';
 
 export interface UserState {
   users: UserModel[];
   selectedUser: UserModel;
   loading: boolean;
   failed: boolean;
+  filter: string;
 }
 
 const initialState: UserState = {
   users: [],
   selectedUser: null,
   loading: true,
-  failed: false
+  failed: false,
+  filter: ''
 };
 
 export function reducer(state = initialState, action: UserAction): UserState {
@@ -29,8 +38,22 @@ export function reducer(state = initialState, action: UserAction): UserState {
       return { ...state, users: [], loading: false, failed: true };
     }
 
+    case SAVE_USER_SUCCESS: {
+      state.users.push(action.payload);
+      console.log(state);
+      return state;
+    }
+
     case VIEW_USER_DETAIL: {
       return { ...state, selectedUser: action.payload };
+    }
+
+    case FILTER_BY_NAME: {
+      return { ...state, filter: action.payload };
+    }
+
+    default: {
+      return state;
     }
   }
 }

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import * as fromRoot from '../../reducers';
-import {hasFailed, isLoading, selectUsers} from '../../selectors/user.selector';
-import {FetchUsers} from '../../actions/user.action';
+import {filteredUsers, hasFailed, isLoading} from '../../selectors/user.selector';
+import {FetchUsers, FilterByName} from '../../actions/user.action';
 import {Observable} from 'rxjs';
 import {UserModel} from '../../models/user.model';
 import {UserState} from '../../reducers/user.reducer';
@@ -23,7 +22,7 @@ export class UserListComponent implements OnInit {
   constructor(private store: Store<UserState>) { }
 
   ngOnInit() {
-    this.users = this.store.pipe(select(selectUsers));
+    this.users = this.store.pipe(select(filteredUsers));
     this.loading = this.store.pipe(select(isLoading));
     this.failed = this.store.pipe(select(hasFailed));
 
@@ -44,5 +43,9 @@ export class UserListComponent implements OnInit {
 
   get drawerWidth() {
     return window.innerWidth * 0.6;
+  }
+
+  filterByName(filter: string) {
+    this.store.dispatch(new FilterByName(filter));
   }
 }

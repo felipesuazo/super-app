@@ -1,8 +1,8 @@
 export interface UserModel {
-  id: number;
+  id?: number;
   name: string;
   position: string;
   area: string;
   world: string;
-  family: string;
+  family?: string;
 }

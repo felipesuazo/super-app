@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {selectAttributes} from '../../selectors/attribute.selector';
 import {FetchAttributes} from '../../actions/attribute.action';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserModel} from '../../models/user.model';
+import {SaveUser} from '../../actions/user.action';
 
 @Component({
   selector: 'app-create-user-form',
@@ -43,10 +45,19 @@ export class CreateUserFormComponent implements OnInit {
 
   close() {
     this.closeForm.emit();
+    this.form.reset();
   }
 
   add() {
-    console.log(this.f);
+    const user: UserModel = {
+      name: this.f.name.value,
+      position: this.f.position.value,
+      area: this.f.area.value,
+      world: this.f.world.value
+    };
+
+    this.store.dispatch(new SaveUser(user));
+    this.close();
   }
 
 }
