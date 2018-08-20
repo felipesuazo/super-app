@@ -11,14 +11,12 @@
     <tr>
       <th nzShowSort nzSortKey="name">Name</th>
       <th nzShowSort nzSortKey="familyGoal">Family</th>
-      <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let data of (users | async)">
+    <tr *ngFor="let data of (users | async)" (click)="viewDetails(data)">
       <td>{{data.name}}</td>
       <td>{{data.family | titlecase }}</td>
-      <td><a>Details</a></td>
     </tr>
     </tbody>
   </nz-table>

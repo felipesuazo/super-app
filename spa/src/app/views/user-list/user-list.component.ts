@@ -48,4 +48,12 @@ export class UserListComponent implements OnInit {
   filterByName(filter: string) {
     this.store.dispatch(new FilterByName(filter));
   }
+
+  sort(event) {
+    console.log(event);
+  }
+
+  viewDetails(user: UserModel) {
+    console.log(user);
+  }
 }

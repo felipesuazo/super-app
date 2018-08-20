@@ -14,6 +14,10 @@ export interface UserState {
   loading: boolean;
   failed: boolean;
   filter: string;
+  order: {
+    name: string;
+    family: string;
+  };
 }
 
 const initialState: UserState = {
@@ -21,7 +25,11 @@ const initialState: UserState = {
   selectedUser: null,
   loading: true,
   failed: false,
-  filter: ''
+  filter: '',
+  order: {
+    name: null,
+    family: null
+  }
 };
 
 export function reducer(state = initialState, action: UserAction): UserState {
