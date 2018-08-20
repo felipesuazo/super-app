@@ -7,7 +7,7 @@ export const filter = createSelector(getUserState, (state: UserState) => state.f
 export const order = createSelector(getUserState, (state: UserState) => state.order);
 export const selectUsers = createSelector(getUserState, (state: UserState) => state.users);
 export const isLoading = createSelector(getUserState, (state: UserState) => state.loading);
-export const hasFailed = createSelector(getUserState, (state: UserState) => state.failed);
+export const hasFailed = createSelector(getUserState, (state: UserState) => state.failed.fetch);
 export const userDetail = createSelector(getUserState, (state: UserState) => state.selectedUser);
 
 export const filteredUsers = createSelector(

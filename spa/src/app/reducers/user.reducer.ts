@@ -2,7 +2,7 @@ import {UserModel} from '../models/user.model';
 import {
   FETCH_USERS,
   FETCH_USERS_FAILED,
-  FETCH_USERS_SUCCESS, FILTER_BY_NAME,
+  FETCH_USERS_SUCCESS, FILTER_BY_NAME, SAVE_USER_FAILED,
   SAVE_USER_SUCCESS, SORT_BY,
   UserAction,
   VIEW_USER_DETAIL
@@ -12,7 +12,10 @@ export interface UserState {
   users: UserModel[];
   selectedUser: UserModel;
   loading: boolean;
-  failed: boolean;
+  failed: {
+    fetch: boolean;
+    save: boolean;
+  };
   filter: string;
   order: {
     name: string;
@@ -24,7 +27,10 @@ const initialState: UserState = {
   users: [],
   selectedUser: null,
   loading: true,
-  failed: false,
+  failed: {
+    fetch: false,
+    save: false
+  },
   filter: '',
   order: {
     name: null,
@@ -35,7 +41,7 @@ const initialState: UserState = {
 export function reducer(state = initialState, action: UserAction): UserState {
   switch (action.type) {
     case FETCH_USERS: {
-      return { ...state, loading: true, failed: false };
+      return { ...state, loading: true, failed: { ...state.failed, fetch: false } };
     }
 
     case FETCH_USERS_SUCCESS: {
@@ -43,14 +49,19 @@ export function reducer(state = initialState, action: UserAction): UserState {
     }
 
     case FETCH_USERS_FAILED: {
-      return { ...state, users: [], loading: false, failed: true };
+      return { ...state, users: [], loading: false, failed: { ...state.failed, fetch: true }};
     }
 
     case SAVE_USER_SUCCESS: {
       return {
         ...state,
+        failed: { ...state.failed, save: false },
         users: [...state.users, action.payload]
       };
+    }
+
+    case SAVE_USER_FAILED: {
+      return { ...state, failed: { ...state.failed, save: true }};
     }
 
     case VIEW_USER_DETAIL: {

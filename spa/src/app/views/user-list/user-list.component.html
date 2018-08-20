@@ -10,8 +10,8 @@
   <nz-table #dataTable [nzShowPagination]="false" [nzLoading]="loading | async" [nzData]="users | async">
     <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
-      <th nzShowSort nzSortKey="name">Name</th>
-      <th nzShowSort nzSortKey="family">Family</th>
+      <th nzShowSort [nzSort]="(order | async)?.name ? (order | async)?.name === 'asc' ? 'ascend' : 'descend' : null" nzSortKey="name">Name</th>
+      <th nzShowSort [nzSort]="(order | async)?.family ? (order | async)?.family === 'asc' ? 'ascend' : 'descend' : null" nzSortKey="family">Family</th>
     </tr>
     </thead>
     <tbody>

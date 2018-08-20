@@ -36,6 +36,11 @@ export class SaveUserSuccess implements Action {
   constructor(public payload: UserModel) {}
 }
 
+export class SaveUserFailed implements Action {
+  readonly type = SAVE_USER_FAILED;
+  constructor() {}
+}
+
 export class ViewUserDetail implements Action {
   readonly type = VIEW_USER_DETAIL;
   constructor(public payload: UserModel) {}
@@ -51,4 +56,5 @@ export class SortBy implements Action {
   constructor(public payload: { name: string, direction: string }) {}
 }
 
-export type UserAction = FetchUsers | FetchUsersSuccess | FetchUsersFailed | SaveUser | SaveUserSuccess | ViewUserDetail | FilterByName | SortBy;
+export type UserAction = FetchUsers | FetchUsersSuccess | FetchUsersFailed | SaveUser | SaveUserSuccess | SaveUserFailed | ViewUserDetail |
+  FilterByName | SortBy;

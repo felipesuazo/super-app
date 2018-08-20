@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {filter, filteredUsers, hasFailed, isLoading} from '../../selectors/user.selector';
+import {filter, filteredUsers, hasFailed, isLoading, order} from '../../selectors/user.selector';
 import {FetchUsers, FilterByName, SortBy, ViewUserDetail} from '../../actions/user.action';
 import {Observable} from 'rxjs';
 import {UserModel} from '../../models/user.model';
@@ -17,6 +17,7 @@ export class UserListComponent implements OnInit {
   loading: Observable<boolean>;
   failed: Observable<boolean>;
   filter: Observable<string>;
+  order: Observable<any>;
 
   mouseOver = false;
   formVisible = false;
@@ -29,6 +30,7 @@ export class UserListComponent implements OnInit {
     this.loading = this.store.pipe(select(isLoading));
     this.failed = this.store.pipe(select(hasFailed));
     this.filter = this.store.pipe(select(filter));
+    this.order = this.store.pipe(select(order));
 
     this.loadUsers();
   }

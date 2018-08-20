@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Action} from '@ngrx/store';
 import {ApiService} from '../services/api.service';
-import {Observable} from 'rxjs';
-import {FETCH_USERS, FETCH_USERS_SUCCESS, SAVE_USER, SAVE_USER_SUCCESS, SaveUser} from '../actions/user.action';
-import {map, mergeMap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {FETCH_USERS, FETCH_USERS_SUCCESS, SAVE_USER, SAVE_USER_SUCCESS, SaveUser, SaveUserFailed} from '../actions/user.action';
+import {catchError, map, mergeMap} from 'rxjs/operators';
 
 @Injectable()
 export class UserEffect {
@@ -26,7 +26,8 @@ export class UserEffect {
     ofType(SAVE_USER),
     mergeMap((action: SaveUser) =>
       this.api.postUser(action.payload).pipe(
-        map(data => ({ type: SAVE_USER_SUCCESS, payload: data }))
+        map(data => ({ type: SAVE_USER_SUCCESS, payload: data })),
+        catchError(() => of(new SaveUserFailed()))
       )
     )
   );
