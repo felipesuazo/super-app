@@ -47,7 +47,7 @@ export class UserEffect {
     ofType(SAVE_USER_FAILED),
     mergeMap(() => {
       this.createNotification('error', 'Error', 'Cannot add user');
-      return null;
+      return of();
     })
   );
 
@@ -56,7 +56,7 @@ export class UserEffect {
     ofType(SAVE_USER_SUCCESS),
     mergeMap((action: SaveUserSuccess) => {
       this.createNotification('success', 'Success', `User ${action.payload.name} added succesfully`);
-      return null;
+      return of();
     })
   );
 
