@@ -1,8 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {NzNotificationService} from 'ng-zorro-antd';
-import {AppState} from './reducers';
-import {Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
