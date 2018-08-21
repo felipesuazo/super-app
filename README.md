@@ -4,6 +4,55 @@
 
 The **API** is written in Ruby in Rails. It's at **/api** directory.
 
+Endpoints:
+ - **[GET] http://localhost:3000/attributes/{name}**
+    - Returns a list with attributes with name **{name}**
+    - Available names: **position, area, world**
+    - Example:
+        ```json
+        [
+            {
+                "name": "position",
+                "value": "ejecutivo pyme"
+            }, {
+                "name": "position",
+                "value": "gerente sucursal"
+            }
+        ]
+        ```
+- **[GET] http://localhost:3000/users**
+    - Returns a list with users and their respective family
+    - Example:
+        ```json
+        [
+            {
+                "name": "Felipe Suazo",
+                "position": "Software Engineer",
+                "area": "Development",
+                "world": "Amazon",
+                "family": "Amazon SDE"
+            }
+        ]
+        ```
+- **[POST] http://localhost:3000/users**
+    - Saves an user if it has family goal that matches their attributes
+    - Sucess:
+        ```json
+            {
+                "name": "Felipe Suazo",
+                "position": "Software Engineer",
+                "area": "Development",
+                "world": "Amazon",
+                "family": "Amazon SDE"
+            }
+        ```
+    - Failure (It happens when user doesn't match a family goal):
+        ```json
+            {
+                "message": "FamilyGoal not found"
+            }
+        ```
+
 Versions:
  - Ruby 2.5.1
  - Rails 5.2.1
