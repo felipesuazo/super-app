@@ -1,10 +1,10 @@
 class User < ApplicationRecord
-  belongs_to :family_goal
+  belongs_to :family_goal, optional: true
 
-  before_validation :set_family_goal
+  before_save :set_family_goal
 
   def set_family_goal
-    self.family_goal = FamilyGoal.where(position: position.downcase, area: area.downcase, world: world.downcase).first
+    self.family_goal = FamilyGoal.find_by(position: position.downcase, area: area.downcase, world: world.downcase)
   end
 
   def family
@@ -12,5 +12,5 @@ class User < ApplicationRecord
   end
 
   # validations
-  validates_presence_of :name, :position, :area, :world, :family_goal
+  validates_presence_of :name, :position, :area, :world
 end
