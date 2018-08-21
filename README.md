@@ -89,3 +89,4 @@ How to setup it locally:
 
 Run app:
  - npm start
+ - visit: http://localhost:4200
